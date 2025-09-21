@@ -11,7 +11,7 @@ import "os"
 import (
 	"fmt"
 	"os"
-	"section4/lib"          //빈 식별자 사용
+	lib "section4/lib"      //빈 식별자 사용
 	testlib "section4/lib2" //별칭 사용
 )
 
