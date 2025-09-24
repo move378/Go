@@ -20,7 +20,7 @@ func multi_reference(i *int) {
 }
 
 func main() {
-	// 패턴: 1) 함수(콜백), 2) 참조 전달(call by reference), 3) 값 전달(call by value)
+	// 패턴: 1) 함수(콜백), 2) 값 전달(call by value), 3) 참조 전달(call by reference)
 
 	//예제1 (콜백 호출)
 	sum(10, add) //함수 전달

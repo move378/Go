@@ -1,4 +1,4 @@
-/함수 기초(3)
+// 함수 기초(3)
 package main
 
 import "fmt"
