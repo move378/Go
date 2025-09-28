@@ -1,4 +1,4 @@
-//구조체 기본(3)
+//여러가지 인스턴스 생성의 예제
 package main
 
 import "fmt"

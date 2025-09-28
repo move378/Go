@@ -1,19 +1,19 @@
-//구조체 기본(6)
+// 구조체 기본(6 중첩 구조체)
 package main
 
 import "fmt"
 
-type spec struct { //소문자로 선언
+type spec struct { //소문자로 선언 privite
 	length int "전장"
 	height int "전고"
 	width  int "전축"
 }
 
 type Car struct { //대문자로 선언
-	name    string
-	color   string
-	company string
-	detail  spec
+	name    string "차량명"
+	color   string "색상"
+	company string "제조사"
+	detail  spec   "상세"
 }
 
 func main() {

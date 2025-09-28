@@ -1,4 +1,4 @@
-// 사용자 정의 타입(2 형변환 - 엄격함)
+// 사용자 정의 타입(2 기본 자료형 사용자 정의 타입: 형변환 - 엄격함)
 package main
 
 import "fmt"
@@ -18,7 +18,7 @@ func main() {
 	var b cnt = 15
 
 	fmt.Println("ex2 : ", b)
-	//testConvertT(b) //예외 발생 (중요!) 사용자 정의 타입 <-> 기본 타입 : 매개변수 전달 시에 변환해야 사용 가능 (cnt(5), int(5))
+	//testConvertT(b) //예외 발생 (중요!) 사용자 정의 타입 <-> 기본 타입 : 매개변수 전달 시에 변환해야 사용 가능 (cnt(5), int(변수))
 	testConvertT(int(b)) // 부모가 같으니 형변환이 가능!
 
 	testConvertD(b)

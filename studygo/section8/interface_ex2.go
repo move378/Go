@@ -1,4 +1,4 @@
-//인터페이스 고급(2)
+// 인터페이스 고급(2 복습)
 package main
 
 import "fmt"

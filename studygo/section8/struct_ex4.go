@@ -1,4 +1,4 @@
-//구조체 심화(4 구조체 임베디드와 상속)
+//구조체 심화(4 구조체 임베디드 패턴으로 구현하는 상속 및 오버라이드)
 package main
 
 import "fmt"
@@ -14,7 +14,7 @@ func (e Employee) Calculate() float64 {
 }
 
 type Executives struct {
-	Employee // is a 관계 - 임원도 직원이다 [상속개념]
+	Employee // is a 관계 - Executives is employee 임원도 직원이다 [상속개념]
 	specialBonus float64
 }
 
@@ -36,7 +36,8 @@ func main() {
 
 	fmt.Println("ex1 : ", int(ep1.Calculate()))
 	fmt.Println("ex1 : ", int(ep2.Calculate()))
-	//Employee 구조체 통해서 메소드 호출(임베디드)
+	//Employee 상속받은 부모를 통해서 메소드 호출(Go에서는 상속이 없기에 임베디드라고 하고 메서드 재사용이라 함)
+	//(e Employee) 리시버를 통해서 아래처럼 바로 사용이 가능, 임원도 직원이니까!
 	fmt.Println("ex1 : ", int(ex.Calculate()+ex.specialBonus))
 
 }

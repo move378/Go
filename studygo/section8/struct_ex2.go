@@ -1,4 +1,4 @@
-// 구조체 심화(2)
+// 구조체 심화(2 함수의 매개변수에 포인터가 오는 경우)
 package main
 
 import "fmt"
@@ -13,7 +13,7 @@ func CalculateD(a Account) { //값 복사 전달
 	a.balance = a.balance + (a.balance * a.interest)
 }
 
-func CalculateP(a *Account) { //주소(참조) 전달
+func CalculateP(a *Account) { //주소(참조) 전달 [포인터형임으로 &로 주소를 전달해야 함]
 	a.balance = a.balance + (a.balance * a.interest)
 }
 

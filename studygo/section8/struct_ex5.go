@@ -1,4 +1,4 @@
-// 구조체 심화(5 구조체 임베디드 - 메소드 오버라이딩[제정의])
+// 구조체 심화(5 구조체 임베디드 - 메소드 오버라이딩[재정의])
 package main
 
 import "fmt"
@@ -41,6 +41,6 @@ func main() {
 
 	fmt.Println("ex1 : ", int(ex.Calculate()+ex.specialBonus))          //오버라이딩 : 잘못 된 값 반환
 	fmt.Println("ex1 : ", int(ex.Calculate()))                          //오버라이딩 : 정확한 값
-	fmt.Println("ex1 : ", int(ex.Employee.Calculate()+ex.specialBonus)) // 임베디드된 원래의 Calculate 호출
+	fmt.Println("ex1 : ", int(ex.Employee.Calculate()+ex.specialBonus)) //임베디드된 원래의 Calculate 호출
 
 }

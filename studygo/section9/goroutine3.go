@@ -1,15 +1,17 @@
-//고루틴(Goroutine)기초(3)
+// 고루틴(Goroutine)기초(3)
 package main
 
-import "fmt"
-import "time"
-import "math/rand"
-import "runtime"
+import (
+	"fmt"
+	"math/rand"
+	"runtime"
+	"time"
+)
 
 func exe(name int) {
 	r := rand.Intn(100)
 	fmt.Println(name, " start : ", time.Now())
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		fmt.Println(name, ">>>>>>>", r, i)
 	}
 	fmt.Println(name, " func end : ", time.Now())
@@ -24,7 +26,7 @@ func main() {
 
 	//예제1
 	fmt.Println("Main Routine Start : ", time.Now())
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		go exe(i) //고루틴 100개 생성
 	}
 	time.Sleep(5 * time.Second) //time.Second, Minute, Hour, Millisecond ....

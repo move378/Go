@@ -1,4 +1,4 @@
-//인터페이스 기본(4)
+// 인터페이스 기본(4)
 package main
 
 import "fmt"
@@ -21,7 +21,8 @@ func (c Cat) run() {
 	fmt.Println(c.name, "Cat is running!")
 }
 
-//익명 인터페이스(타입 정의x)
+// 익명 인터페이스(타입 정의x) run()뛸 수 있으면 애니멀이야, 애니멀의 메소드(동작)
+// 타입을 정의하지 않아도 해당 메소드가 있으면 실행됨
 func act(animal interface{ run() }) {
 	animal.run()
 }

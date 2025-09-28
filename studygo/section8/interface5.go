@@ -1,4 +1,4 @@
-//인터페이스 기본(5)
+//인터페이스 활용(5 빈 인터페이스: nil)
 package main
 
 import "fmt"
@@ -14,6 +14,8 @@ type Cat struct {
 }
 
 func printValue(s interface{}) {
+	// Go에서는 명시적으로 인터페이스를 구현한다고 선언하지 않아도,
+	// 해당 인터페이스의 메서드를 가지고 있으면 자동으로 그 인터페이스를 구현한 것으로 간주됩니다.
 	fmt.Println(s)
 }
 

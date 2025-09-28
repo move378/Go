@@ -1,21 +1,23 @@
-//인터페이스 고급(3)
+// 인터페이스 고급(3 Type Assertions : 타입검사 if문)
 package main
 
-import "fmt"
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
-	//타입 변환
-	//실행(런타임) 시에는 인터페이스에 할당한 변수는 실제 타입으로 변환 후 사용해야 하는 경우
-	//인터페이스.(타입) 형식 -> 형 변환
-	//interfaceVal.(type)
+	/* 타입 변환
+	실행(런타임) 시에는 인터페이스에 할당한 변수는 실제 타입으로 변환 후 사용해야 하는 경우
+	인터페이스.(타입) 형식 -> 형 변환
+	interfaceVal.(type) */
 
 	//예제1
 	var a interface{} = 15
 
 	b := a
 	c := a.(int)
-	//d := a.(float64) //예외 발생
+	//d := a.(float64) //런타임 에러 발생- 최초 타입으로만 형변환 가능
 
 	fmt.Println("ex1 : ", a)
 	fmt.Println("ex1 : ", reflect.TypeOf(a))

@@ -1,10 +1,10 @@
-//구조체 기본(5)
+//구조체 기본(5 필드 태그 사용하기!)
 package main
 
 import "fmt"
 import "reflect"
 
-type Car struct {
+type Car struct { // 대문자로 생성해야 외부에서 참조가 가능하다 public
 	name    string "차량명"
 	color   string "색상"
 	company string "제조사"
