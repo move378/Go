@@ -1,4 +1,4 @@
-//채널(Channel) 기초(5)
+//채널(Channel) 기초(5 값, 결과 변수에 할당 패턴)
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 		}
 	}()
 
-	val1, ok1 := <-ch
+	val1, ok1 := <-ch // 두번째 변수에 전송 결과를 boolean 값으로 전달함
 	fmt.Println("ex1 : ", val1, ok1)
 	val2, ok2 := <-ch
 	fmt.Println("ex1 : ", val2, ok2)

@@ -1,4 +1,4 @@
-//채널(Channel) 심화(3)
+//채널(Channel) 심화(3 함수의 반환형으로 채널을 사용(+전용채널))
 
 package main
 
@@ -38,5 +38,5 @@ func main() {
 	c := receiveOnly(100) //채널 반환
 	output := total(c)    //채널 전달 후 반환
 	//output <- 777 //예외
-	fmt.Println("ex1 : ", <-output)
+	fmt.Println("ex1 : ", <-output) // 리턴 타입이 같아야 함. 계속 받는 걸로 받아주면 됨.
 }

@@ -1,9 +1,11 @@
-//채널(Channel) 심화(4)
+//채널(Channel) 심화(4 셀렉트 응용하여 분기처리하기)
 
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	//채널(Channel) 셀렉트 구문
@@ -31,16 +33,17 @@ func main() {
 
 	go func() {
 		for {
-			select {
+			select { // ch1/ch2 어디서 오는지로 분기함
 			case num := <-ch1:
 				fmt.Println("ch1 : ", num)
 			case str := <-ch2:
 				fmt.Println("ch2 : ", str)
 				//default:
 				//fmt.Println("default test")
+				//값을 받아와야 하는데, 값이 오기 전이라 계속 디폴트로 빠지는 반복문이 되어버림
 			}
 		}
 	}()
 
-	time.Sleep(7 * time.Second)
+	time.Sleep(7 * time.Second) // main 함수를 7초간 실행함 이거 없으면 무한반복
 }

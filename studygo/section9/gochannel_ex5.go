@@ -1,9 +1,11 @@
-//채널(Channel) 심화(5)
+//채널(Channel) 심화(5 수발신 처리 게이트웨이 만들기)
 
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	//채널(Channel)
