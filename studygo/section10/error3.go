@@ -1,4 +1,4 @@
-//Go 에러 처리 기초(2)
+//Go 에러 처리 기초(2 errors.New("String") 메소드를 활용한 에러 생성)
 
 package main
 

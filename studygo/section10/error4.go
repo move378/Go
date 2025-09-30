@@ -1,4 +1,4 @@
-//Go 에러 처리 기초(4)
+//Go 에러 처리 기초(4 fmt.Errorf -> errors.New("String") 대체)
 
 package main
 
@@ -25,7 +25,7 @@ func main() {
 
 	if err != nil {
 		//log.Fatal(err)
-		log.Fatal(err.Error())
+		log.Fatal(err.Error()) // 더 명시적인 정확한 선언
 	}
 
 	fmt.Println("ex1 : ", a)

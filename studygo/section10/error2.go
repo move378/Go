@@ -1,4 +1,4 @@
-//Go 에러 처리 기초(2)
+//Go 에러 처리 기초(2 fmt.Errorf 를 이용한 처리-메세지 사용자정의)
 
 package main
 
