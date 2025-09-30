@@ -1,4 +1,4 @@
-//고루틴 동기화 기초(4)
+//고루틴 동기화 기초( 4 RLock(), RUnlock() )
 
 package main
 

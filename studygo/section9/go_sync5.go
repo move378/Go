@@ -1,5 +1,4 @@
-//고루틴 동기화 기초(5)
-
+// 고루틴 동기화 기초(5 실행제어)
 package main
 
 import (
@@ -10,49 +9,88 @@ import (
 )
 
 func main() {
-	//고루틴 동기화 객체
-	//동기화 상태(조건) 메소드 사용
-	//Wait , notify , notifyAll : 기타 언어
-	//Wait , Signal , Broadcas
-
-	// 시스템 전체 CPU 사용
+	// ============================================
+	// 🎯 시스템 설정: 모든 CPU 코어 활용
+	// ============================================
+	// Mac에서 8코어라면 8개 모두 사용 → 고루틴이 병렬 실행됨
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	var mutex = new(sync.Mutex)
-	var condition = sync.NewCond(mutex)
+	// ============================================
+	// 🔧 동기화 도구 준비
+	// ============================================
+	var mutex = new(sync.Mutex)         // 🔒 뮤텍스: 공유 자원 보호용 자물쇠
+	var condition = sync.NewCond(mutex) // 📢 조건 변수: 뮤텍스와 연결된 신호 시스템
+	// ⚠️ 중요: Condition은 반드시 Mutex와 함께 사용!
 
-	c := make(chan int, 5) //비동기 버퍼 채널
+	c := make(chan int, 5) // 📬 버퍼 채널: 5개까지 데이터 저장 가능
+	// 고루틴이 준비되었다는 신호를 보내기 위한 용도
 
+	// ============================================
+	// 🚀 5개의 고루틴 생성 (비동기 실행)
+	// ============================================
 	for i := 0; i < 5; i++ {
-		go func(n int) {
-			mutex.Lock()
-			c <- 777
-			fmt.Println("Goroutine Wating : ", n)
-			condition.Wait() //고루틴 대기(멈춤)
-			fmt.Println("Wating End : ", n)
-			mutex.Unlock()
-		}(i)
+		go func(n int) { // n: 고루틴 번호 (0~4)
+
+			// 📍 STEP 1: 자물쇠 잠그기
+			mutex.Lock() // 🔒 "내가 지금부터 작업할게!"
+			// 다른 고루틴은 이 Lock() 부분에서 대기
+
+			// 📍 STEP 2: 채널에 신호 보내기
+			c <- 777 // 📬 메인 함수에게 "나 준비됐어!" 신호
+			// 버퍼가 있어서 블로킹 안 됨 (중요!)
+
+			fmt.Println("Goroutine Waiting : ", n)
+
+			// 📍 STEP 3: 조건 변수로 대기 (핵심!)
+			condition.Wait() // 🛑 ⚠️ 매우 중요한 동작!
+			// 1. mutex.Unlock() 자동 실행 (자물쇠 반납)
+			// 2. 고루틴 잠들기 (CPU 사용 안 함)
+			// 3. Signal/Broadcast 받으면 깨어남
+			// 4. 깨어나면 mutex.Lock() 자동 재획득 시도
+			// 5. Lock 획득 성공하면 다음 코드 실행
+
+			fmt.Println("Waiting End : ", n)
+
+			// 📍 STEP 4: 자물쇠 풀기
+			mutex.Unlock() // 🔓 "작업 끝! 다른 고루틴 써도 돼"
+		}(i) // 즉시 실행, i를 n으로 전달 (클로저 문제 방지)
 	}
 
+	// ============================================
+	// 🎬 메인 함수: 고루틴들이 모두 준비될 때까지 대기
+	// ============================================
 	for i := 0; i < 5; i++ {
-		<-c
-		//fmt.Println("received : ", <-c)
+		<-c // 📬 채널에서 5번 받기
+		// 5개 고루틴이 모두 Wait() 상태가 될 때까지 대기
+		// 이게 없으면 메인이 먼저 끝나버림!
 	}
 
+	// ============================================
+	// 📢 방법 1: Signal() - 한 명씩 깨우기 (현재 주석 처리됨)
+	// ============================================
 	/*
 		for i := 0; i < 5; i++ {
-			mutex.Lock()
+			mutex.Lock()                       // 🔒 신호 보내기 전에 뮤텍스 필요
 			fmt.Println("Wake Goroutine(Signal) : ", i)
-			condition.Signal() //한 개 씩 깨움(모든 고루틴 생성 후)
-			mutex.Unlock()
+			condition.Signal()                 // 📢 대기 중인 고루틴 중 1명만 깨움
+			                                   // 순서는 보장 안 됨! (랜덤일 수 있음)
+			mutex.Unlock()                     // 🔓 깨어난 고루틴이 Lock 획득 가능하게
 		}
 	*/
 
-	mutex.Lock()
+	// ============================================
+	// 📢 방법 2: Broadcast() - 모두 깨우기 (현재 활성화)
+	// ============================================
+	mutex.Lock() // 🔒 방송 전에 자물쇠 획득
 	fmt.Println("Wake Goroutine(Broadcast)")
-	condition.Broadcast()
-	mutex.Unlock()
+	condition.Broadcast() // 📢 "모두 일어나!!!"
+	// 5개 고루틴 모두 동시에 깨어남
+	// 하지만 Mutex 때문에 한 번에 한 개씩만 실행
+	mutex.Unlock() // 🔓 자물쇠 풀어줌 → 고루틴들 경쟁 시작
 
-	time.Sleep(2 * time.Second)
-
+	// ============================================
+	// ⏰ 고루틴들이 끝날 시간 주기
+	// ============================================
+	time.Sleep(2 * time.Second) // 2초 대기 (프로그램 종료 방지)
+	// ⚠️ 실전에서는 WaitGroup 사용 권장!
 }

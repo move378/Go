@@ -31,9 +31,10 @@ func main() {
 	공유 데이터 보호가 가장 중요 (Thread Safe)
 	비즈니스 로직과 성능에 큰 영향 Java에서의 Synchronize
 	다른 언어들과 달리 매우 빠르게 동기화 처리가 가능합니다.
+	*/
 
-	동기화 사용하지 않은 경우 예제
-	시스템 전체 cpu 사용 */
+	// 동기화 처리를 하지 않은 경우 예제
+	// 시스템 전체 cpu 사용 */
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	c := count{num: 0}

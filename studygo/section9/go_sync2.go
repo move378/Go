@@ -1,4 +1,4 @@
-//고루틴 동기화 기초(2)
+//고루틴 동기화 기초(2 뮤텍스를 이용한 공유데이터 보호)
 
 package main
 
@@ -8,7 +8,7 @@ import (
 	"sync"
 )
 
-//구조체 선언(공유 데이터)
+// 구조체 선언(공유 데이터)
 type count struct {
 	num   int
 	mutex sync.Mutex

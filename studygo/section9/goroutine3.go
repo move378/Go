@@ -20,6 +20,7 @@ func exe(name int) {
 func main() {
 	//고루틴(Goroutine)
 	//멀티 코어(다중 CPU) 최대한 활용
+	// 고루틴 코드를 잘 짜야 하고 동기화를 잘해야 합니다.
 
 	runtime.GOMAXPROCS(runtime.NumCPU())                        // 현 시스템의 CPU 코어 개수 반환 후 설정
 	fmt.Println("Current System Cpu : ", runtime.GOMAXPROCS(0)) // 설정 값 출력
