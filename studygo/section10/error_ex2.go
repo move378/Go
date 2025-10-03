@@ -1,4 +1,4 @@
-//Go 에러 처리 고급(2)
+//Go 에러 처리 고급(2 Errorf 사용)
 
 package main
 
@@ -7,7 +7,7 @@ import (
 	"math"
 )
 
-//f의 i제곱 구하는 함수
+// f의 i제곱 구하는 함수
 func Power(f float64, i float64) (float64, error) {
 	if f == 0 {
 		return 0, fmt.Errorf("(%g)는/은 사용 불가능 합니다.", f)
@@ -17,7 +17,6 @@ func Power(f float64, i float64) (float64, error) {
 
 func main() {
 	//에러 처리 고급
-	//Go error 패키지 New 메소드 사용 -> 사용자 에러 처리 생성
 
 	//예제1
 	if f, err := Power(7, 3); err != nil {
