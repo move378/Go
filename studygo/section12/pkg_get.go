@@ -2,8 +2,11 @@
 
 package main
 
-import "fmt"
-import "github.com/tealeg/xlsx"
+import (
+	"fmt"
+
+	"github.com/tealeg/xlsx"
+)
 
 func main() {
 	//외부 저장소 패키지 설치

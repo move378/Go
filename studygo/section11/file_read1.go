@@ -1,4 +1,4 @@
-//파일 읽기(1)
+//파일 읽기(1 offset 커서의 개념만 있으면 실수할 일이 없습니다)
 package main
 
 import (
@@ -62,13 +62,14 @@ func main() {
 	errCheck1(err)
 
 	fmt.Printf("읽기 작업(2) 완료 (%d bytes) (%d ret)\n\n", ct2, o1)
+	//ct2 는 읽은 길이를 가지고 있고, o1은 현재 위치(offset)가 있음
 	fmt.Println(string(fd2), "\n")
 	fmt.Println("=============================================")
 
 	//읽기 예제3
-	o2, err := file.Seek(0, 0)
+	o2, err := file.Seek(0, 0) // 커서를 처음으로..
 	errCheck1(err)
-	fd3 := make([]byte, 50)
+	fd3 := make([]byte, 50) // 50개를 담아서
 	ct3, err := file.ReadAt(fd3, 8) //offset 위치부터 읽어온다.
 	errCheck1(err)
 

@@ -5,6 +5,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -28,14 +29,14 @@ func main() {
 	//즉, bufio의 NewReader, NewWriter를 통해서 객체 반환 후 메소드 사용
 
 	//bufio(Buffered io) 패키지
-	//https://golang.org/pkg/bufio의
+	//https://golang.org/pkg/bufio
 
 	//파일 열기
 	//두 번째 매개변수 확인
 	//https://golang.org/pkg/os/#pkg-constants
 
 	/*
-	   상태
+	   상태 (4byte)
 	   a -----> a
 	   b -----> ab
 	   c -----> abc
@@ -79,7 +80,9 @@ func main() {
 
 	fmt.Println("=============================================")
 
-	file.Seek(0, os.SEEK_SET)
+	file.Seek(0, io.SeekStart)
+	// file.Seek(0, os.SEEK_SET)
+	// os.SEEK_SET → io.SeekStart (Go 1.7부터 deprecated)
 	data, _ := rt.Read(b) //읽기(ReadLine, ReadByte, ReadBytes 등)
 	//rt.Read(b)
 

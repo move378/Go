@@ -1,4 +1,4 @@
-//파일 쓰기(1)
+// 파일 쓰기(1 Write, WriteString, WriteAt)
 package main
 
 import (
@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-//에러 체크 방식1
+// 에러 체크 방식1
 func errCheck1(e error) {
 	if e != nil {
 		panic(e)
@@ -54,7 +54,7 @@ func main() {
 
 	fmt.Printf("쓰기 작업(2) 완료 (%d bytes) \n", n2)
 
-	file.Sync() //Write Commit(Stable)!
+	file.Sync() //Write Commit(Stable)! : 쓰기가 끝나면 커밋해주기
 
 	//쓰기 예제3
 	s3 := "Test WriteAt! -2\n"
@@ -63,7 +63,7 @@ func main() {
 
 	fmt.Printf("쓰기 작업(3) 완료 (%d bytes) \n", n3)
 
-	file.Sync()
+	file.Sync() // 안정적으로 스테이블
 
 	//쓰기 예제4
 	n4, err := file.WriteString("Hello Golang! \n File Write Test! - 3\n")

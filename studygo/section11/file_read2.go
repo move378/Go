@@ -1,4 +1,4 @@
-//파일 읽기(2)
+//파일 읽기(2 csv 파일 읽기, buf io)
 package main
 
 import (
@@ -58,7 +58,7 @@ func main() {
 	errCheck2(err)
 	fmt.Println("CSV ReadAll Example")
 	//fmt.Println(rows)
-	fmt.Println(rows[5][1], " : ", rows[2][1], " : ", rows[6][1])
+	fmt.Println(rows[5][1], " : ", rows[2][1], " : ", rows[6][1]) // 2차원 배열 형태
 	fmt.Println("================================")
 
 	fileInfo, err := file.Stat()
