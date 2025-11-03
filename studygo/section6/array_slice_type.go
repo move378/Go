@@ -36,7 +36,7 @@ func main() {
 	//예제3(슬라이스 예외 상황)
 	slice3 := make([]int, 5, 10) //여기서 용량만큼 초기화 되는게 아니라 길이만큼 초기화 됩니다.
 	fmt.Println("ex3 : ", slice3[4])
-	//fmt.Println("ex3 : ", slice3[5]) //길이 index over 예외
+	//fmt.Println("ex3 : ", slice3[5]) //길이 index over / out of bound 예외
 	//fmt.Println("ex3 : ", slice3[8]) //길이 index over 예외
 	fmt.Println()
 

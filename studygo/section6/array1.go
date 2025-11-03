@@ -82,8 +82,8 @@ func main() {
 
 	//인덱스 생략2
 	fmt.Println()
-	for v := range arr12 { // 첫번째 인자는 인덱스 i, 두번째 인자가 값임.
-		fmt.Println("ex4 : ", v)
+	for i := range arr12 { // 첫번째 인자는 인덱스 i, 두번째 인자가 값임.
+		fmt.Println("ex4 : ", i)
 	}
 
 	//배열 복사
@@ -97,7 +97,7 @@ func main() {
 	fmt.Println("ex1 : ", arr13, &arr13)
 	fmt.Println("ex1 : ", arr14, &arr14)
 
-	fmt.Printf("ex1: %p %v\n", &arr13, arr13) //주소 값 출력
+	fmt.Printf("ex1: %p %v\n", &arr13, arr13) //주소 값 출력 [%p와 &를 매칭시켜줘야 의도대로 작동함]
 	fmt.Printf("ex1: %p %v\n", &arr14, arr14) //주소 값 출력
 	//&를 붙이면 주소에 있는 값을 출력해줍니다.
 	//%p 는 포인터, %v 는 오리지널 밸류, %p 에는 주소값 &로 매핑해줘야 합니다.

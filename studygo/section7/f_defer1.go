@@ -1,4 +1,4 @@
-//함수 Defer(지연함수)
+// 함수 Defer(지연함수: 함수 생명주기의 마지막에 실행)
 package main
 
 import "fmt"

@@ -5,20 +5,54 @@ import "fmt"
 
 func main() {
 	/* 맵(Map)
-	맵 : 해시테이블, 딕셔너리(파이썬), Key-Value로 자료 저장
-	1) 레퍼런스 타입!(참조 값 전달)
-	2) Key-Value
-	3) comparable 타입을 키(Key)로 사용 가능, 값(Value)은 모든 타입을 사용 가능하다.
-	[참조 타입 중에서도 non-comparable (slice, map, function)이 키로 사용 불가능하다]
-	비교 연산자 사용 불가능(참조 타입이므로)
-	make 함수 및 축약(리터럴)로 초기화 가능
-	순서 없음, 슬라이스나 배열은 순서가 있지만, 맵 데이터 구조는 순서가 없는 구조
+		맵 : 해시테이블, 딕셔너리(파이썬), Key-Value로 자료 저장
+		1) 레퍼런스 타입!(참조 값 전달)
+		2) Key-Value되어 있고,
+		3) comparable 타입을 키(Key)로 사용 가능, 값(Value)은 모든 타입을 사용 가능하다.
+		[참조 타입 중에서도 non-comparable (slice, map, function)이 키로 사용 불가능하다]
+		비교 연산자 사용 불가능(*"비교의 의미가 명확하지 않기 때문"**입니다!)
+		make 함수 및 축약(리터럴)로 초기화 가능
+		순서 없음, 슬라이스나 배열은 순서가 있지만, 맵 데이터 구조는 순서가 없는 구조
+
+	## 🧩 Comparable의 본질: "동등성 정의 가능 여부"
+
+	### **핵심 질문:**
+	> "두 값이 '같다'는 것을 명확하게 정의할 수 있는가?"
+	```
+	Comparable의 조건:
+	├─ 1. 비교 연산(==)이 의미가 있어야 함
+	├─ 2. 비교 결과가 예측 가능해야 함
+	├─ 3. 해시값 계산이 가능해야 함 (Map Key용)
+	└─ 4. 불변하거나, 변해도 비교 규칙이 일관돼야 함
+
+	3차원 프레임워크 확장:
+
+	Comparable 타입:
+	├─ 불변 참조: string (안전하게 내용 비교)
+	├─ 값 타입: int, array (명확한 값 비교)
+	└─ 주소 참조: pointer (간단한 주소 비교)
+
+	Non-Comparable 타입:
+	├─ 가변 참조 + 복잡: slice, map
+	│   └─ 문제: 비교 의미 모호, 비용 큼
+	└─ 비교 무의미: function
+	    └─ 문제: 같다는 게 무슨 의미?
+	```
+
+	### **Map Key 규칙:**
+	```
+	Map Key 되려면:
+	✅ Comparable (== 가능)
+	✅ Hashable (hash() 가능)
+	✅ 안정적 (불변 또는 변해도 일관성)
+
+	→ Non-Comparable은 조건 1 실패 → Key 불가!
 	*/
 
 	//예제1
-	var map1 map[string]int = make(map[string]int) //정석
+	var map1 map[string]int = make(map[string]int) //정석 map[KeyType]ValueType
 	var map2 = make(map[string]int)                //자료형 생략
-	map3 := make(map[string]int)                   //리터럴 형
+	map3 := make(map[string]int)                   //리터럴(축약) 형
 
 	fmt.Println("ex1 : ", map1)
 	fmt.Println("ex1 : ", map2)
@@ -26,12 +60,12 @@ func main() {
 	fmt.Println()
 
 	//예제2
-	map4 := map[string]int{} // Json 형태
+	map4 := map[string]int{} // Json 형태로 {}에 묶여서 데이터가 들어감
 	map4["apple"] = 25
 	map4["banana"] = 40
 	map4["orange"] = 33
 
-	map5 := map[string]int{
+	map5 := map[string]int{ // 보통 이런 형태를 사용함 보기가 좀 더 편함
 		"apple":  15,
 		"banana": 30,
 		"orange": 23, //콤마 주의
@@ -79,7 +113,7 @@ func main() {
 		"daum":   "http://daum.net",
 		"naver":  "http://naver.com",
 		"google": "http://google.com",
-		"home1":  "http://test1.com",
+		"home1":  "http://test1.com", // 마지막에 콤마를 찍어줘야 마무리가 됩니다.
 	}
 	fmt.Println("ex1 : ", map8)
 	map8["home2"] = "http://test2.com" //추가
@@ -122,10 +156,10 @@ func main() {
 		fmt.Println("ex2 : kiwi is not exist!")
 	}
 
-	if value, ok := map9["lemon"]; ok {
+	if value, ok := map9["banana"]; ok {
 		fmt.Println("ex2 : ", value)
 	} else {
-		fmt.Println("ex2 : kiwi is not exist!")
+		fmt.Println("ex2 : banana is not exist!")
 	}
 
 	if _, ok := map9["kiwi"]; !ok { // value를 받지 않고, 키가 있는지 없는지만 확인 (else문을 안쓰려고)

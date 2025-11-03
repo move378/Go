@@ -29,7 +29,7 @@ func main() {
 	*/
 
 	//예제2 - 아스키(영문)
-	var char1 byte = 72
+	var char1 byte = 72 // byte==uint8, rune == int32
 	var char2 byte = 0110
 	var char3 byte = 0x48
 

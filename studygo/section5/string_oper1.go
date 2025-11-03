@@ -19,8 +19,9 @@ func main() {
 	var str2 string = "World"
 
 	fmt.Println("ex1 : ", str1[0:2], str1[0]) // 0~2번 슬라이싱 문자로 개별 인덱스로 가져오면 정수형 출력!
-	fmt.Println("ex1 : ", str2[3:], str2[0])  //[3]인덱스부터 ~비워놓으면 인덱스의 끝까지
-	fmt.Println("ex1 : ", str2[:4], str2[0])  //[4]인덱스까지인데 항상 끝부분은 -1로 계산 [서양식]
+	// 이때 특이하게도 슬라이스가 인덱스 0~2-1 까지 출력됨 Go 까지만 출력됨
+	fmt.Println("ex1 : ", str2[3:], str2[0]) //[3]인덱스부터 ~비워놓으면 인덱스의 끝까지
+	fmt.Println("ex1 : ", str2[:4], str2[0]) //[4]인덱스까지인데 항상 끝부분은 -1로 계산 [서양식]
 	fmt.Println("ex1 : ", str1[1:3])
 
 	//예제2(비교)

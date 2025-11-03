@@ -3,10 +3,10 @@ package main
 
 import "fmt"
 
-func multiply(x int, y int) (r1 int, r2 int) { // 변수명 명시
+func multiply(x int, y int) (r1 int, r2 int) { // 리턴 값을 변수로써 명시
 	r1 = x * 10
 	r2 = y * 20
-	return //리턴 변수 지정
+	return r1, r2//리턴 변수 지정
 }
 
 func multiply2(x int, y int) (int, int) { // 익명

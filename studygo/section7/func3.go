@@ -12,7 +12,7 @@ func arrayMultiply(a, b, c, d, e int) (int, int, int, int, int) {
 }
 
 func main() {
-	//다중 값 반환(return values)
+	//다중 값 반환(return values) : 고에만 있음
 
 	//예제1
 	a, b := multiply(10, 5)

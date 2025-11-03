@@ -1,4 +1,4 @@
-// 함수 심화(가변인자)
+// 함수 심화(가변인자-매겨변수의 갯수가 동적으로 변할 때 - 정해져 있지 않음)
 package main
 
 import "fmt"
@@ -12,7 +12,7 @@ func multiply(n ...int) int {
 	return tot
 }
 
-func sum(n ...int) int {
+func sum(n ...int) int { // n ...int n이 몇개가 들어올지 모르는 가변인자 임
 	tot := 0
 	for _, value := range n {
 		tot += value
