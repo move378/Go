@@ -14,6 +14,7 @@ type Cat struct {
 }
 
 func printValue(s interface{}) {
+	// 빈 인터페이스를 함수로 전달받으면 해당 함수는 모든 타입을 매개변수로 받을 수 있음.
 	fmt.Println(s)
 }
 
