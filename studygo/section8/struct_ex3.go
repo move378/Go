@@ -22,11 +22,11 @@ func (a *Account) CalculateP(bonus float64) { //주소(참조) 전달
 func main() {
 	//구조체 생성자 패턴 예제
 
-	//정리 : 구조체 인스턴스 값 변경 시 -> 포인터 전달 , 보통의 경우 -> 값 전달
+	//정리 : 구조체 인스턴스 값 변경 시 -> 포인터(참조) 전달 , 보통의 경우 -> 값(복사) 전달
 
 	//예제1
 	kim := Account{number: "245-901", balance: 10000000, interest: 0.015}
-	lee := Account{number: "245-902", balance: 12000000, interest: 0.045}
+	lee := Account{number: "245-902", balance: 10000000, interest: 0.045}
 
 	fmt.Println("ex1 : ", kim)
 	fmt.Println("ex1 : ", lee)

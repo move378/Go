@@ -13,8 +13,8 @@ func (e Employee) Calculate() float64 {
 	return e.salary + e.bonus
 }
 
-// 이름이 같은 함수 사용 : 오버라이딩
-func (e Executives) Calculate() float64 {
+// 이름이 같은 함수 사용 : 오버라이딩 [is A의 하위(자식) 관계에서 오버라이딩이 이뤄진 것.]
+func (e Executives) Calculate() float64 { // Executives is A:Employee 지만, Executives 에서 재정의함.
 	return e.Employee.salary + e.Employee.bonus + e.specialBonus
 }
 

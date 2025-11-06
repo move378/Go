@@ -15,27 +15,37 @@ func (a Account) Calculate() float64 {
 
 func main() {
 	/*
-		&struct, struct : &struct 포인터를 받아오기, 역참조를 또 하기 때문에 속도는 조금 느리다.
-		포인터형으로 구조체를 사용해야 하는 경우 - 인터페이스 메소드를 선언만 해둔 후
-		-> 오버라이딩(재정의)한 메서드에 포인터 리시버를 사용할 경우 반드시 &struct 형식으로 넘겨야 작동한다.
+		🔑 핵심 규칙:
 
-		.\main.go:37: cannot use struct (type structType) as tyep MyInterface in argument to DisplayInfo:
-		structType does not implement MyInterface (DisplayA method has pointer receiver)
+		1. 포인터 리시버 메소드가 있는 인터페이스
+		   → 반드시 포인터 타입(*T)으로 할당
+		   → &Account{...} 또는 new(Account) 사용
+
+		2. 세 가지 선언 방법:
+		   - new(Account):    포인터 반환, 초기화 불가
+		   - &Account{...}:   포인터 반환, 초기화 가능
+		   - Account{...}:    값 반환
+
+		3. 메소드 호출 vs 인터페이스 할당:
+		   - 메소드 호출: Go가 자동 변환 (편리)
+		   - 인터페이스 할당: 메소드 세트 규칙 엄격 적용
 	*/
-	//예제1
-	//선언 방법1
+
+	// 방법1: new + 필드별 할당
 	var kim *Account = new(Account)
-	// 인스턴스를 생성해서 변수에 참조를 전달해야 하기 때문에 주소값 표시 *를 쓴다.
-	// 인터페이스를 오버라이딩 할 때 new라는 키워드를 사용해야 한다.
 	kim.number = "245-901"
 	kim.balance = 10000000
 	kim.interest = 0.015
 
-	//선언 방법2
-	hong := &Account{number: "245-902", balance: 15000000, interest: 0.04}
+	// 방법2: & + 리터럴 초기화 (가장 권장)
+	hong := &Account{
+		number:   "245-902",
+		balance:  15000000,
+		interest: 0.04,
+	}
 
-	//선언 방법3
-	lee := new(Account) // new 키워드가 쓰이면 선언만 가능!
+	// 방법3: new (초기화 나중에)
+	lee := new(Account)
 	lee.number = "245-903"
 	lee.balance = 13000000
 	lee.interest = 0.025
@@ -49,9 +59,7 @@ func main() {
 
 	fmt.Println()
 
-	//예제2
 	fmt.Println("ex3 : ", int(kim.Calculate()))
 	fmt.Println("ex3 : ", int(hong.Calculate()))
 	fmt.Println("ex3 : ", int(lee.Calculate()))
-
 }

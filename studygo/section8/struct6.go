@@ -3,17 +3,17 @@ package main
 
 import "fmt"
 
-type spec struct { //소문자로 선언 privite
-	length int "전장"
-	height int "전고"
-	width  int "전축"
-}
-
-type Car struct { //대문자로 선언
+type Car struct { //대문자로 선언 [구조체 안에 spec이라는 구조체가 또 들어감. 중첩!]
 	name    string "차량명"
 	color   string "색상"
 	company string "제조사"
 	detail  spec   "상세"
+}
+
+type spec struct { //소문자로 선언 privite
+	length int "전장"
+	height int "전고"
+	width  int "전축"
 }
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 	fmt.Println()
 
 	//예제2
-	// 내부 spec 구조체 필드 값 출력
+	// 내부 spec 구조체 필드 값 출력, 중첩되어 있으니.으로 다시 접근해들어가면 됩니다.
 	fmt.Println("ex2 : ", car1.detail.length)
 	fmt.Println("ex2 : ", car1.detail.height)
 	fmt.Println("ex2 : ", car1.detail.width)

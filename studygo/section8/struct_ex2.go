@@ -1,4 +1,4 @@
-// 구조체 심화(2 함수의 매개변수에 포인터가 오는 경우)
+// 구조체 심화(2 일반적인 함수의 매개변수에 포인터가 오는 경우)
 package main
 
 import "fmt"
@@ -29,7 +29,7 @@ func main() {
 	fmt.Println()
 
 	CalculateD(kim)
-	CalculateP(&lee) //CalculateP(lee) 호출 시 예외 발생
+	CalculateP(&lee) //CalculateP(lee) 호출 시 예외 발생, 포인터형 메소드이기 때문에 정확하게 명시해야 함.
 
 	fmt.Println("ex1 : ", int(kim.balance))
 	fmt.Println("ex1 : ", int(lee.balance))
