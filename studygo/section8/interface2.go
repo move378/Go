@@ -37,11 +37,14 @@ func main() {
 
 	// 방법1: 인덱스 기반 순회
 	for idx, _ := range inters {
+		//dog1.bite() Behavior타입으로 받아서 배열에 넣고 실행하는 것임
 		inters[idx].bite()
 	}
 
 	// 방법2: 값 기반 순회 (더 관용적)
+	// 해당 값은 구조체 객체 자체를 반환할 테니까,
 	for _, val := range inters {
+		// inter2 := Behavior(dog2) 와 같음
 		val.bite()
 	}
 
